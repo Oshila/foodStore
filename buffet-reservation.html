@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buffet Reservation - Rubels & Angels</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+<nav class="bg-black shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="text-2xl font-bold text-yellow-400">Rubels & Angels</a>
+                <div class="text-sm text-gray-300">Buffet Reservation</div>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="index.html" class="text-gray-300 hover:text-yellow-400 font-medium">Menu</a>
+                <a href="track-order.html" class="text-gray-300 hover:text-yellow-400 font-medium">Track Order</a>
+                <a href="index.html#contact" class="text-gray-300 hover:text-yellow-400 font-medium">Contact</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-gray-900 via-black to-yellow-500 text-white py-16">
+
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-4">Heavenly Buffet Experience</h1>
+            <p class="text-xl mb-8">All-you-can-eat dining with over 50 delicious dishes</p>
+            <div class="bg-white/20 backdrop-blur-sm rounded-lg p-6 max-w-2xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold">50+</div>
+                        <div class="text-sm">Dishes</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold">5★</div>
+                        <div class="text-sm">Rating</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold">3hrs</div>
+                        <div class="text-sm">Duration</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold">₦8,000</div>
+                        <div class="text-sm">Per Person</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buffet Packages -->
+    <section class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Buffet Packages</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Standard Buffet -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-gray-800 text-white p-4 text-center">
+                        <h3 class="text-2xl font-bold">Standard Buffet</h3>
+                        <div class="text-3xl font-bold mt-2">₦8,000</div>
+                        <div class="text-sm opacity-90">per person</div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>All main course dishes</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Salads & appetizers</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Desserts & fruits</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Soft drinks included</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>3 hours dining</span>
+                            </li>
+                        </ul>
+                        <button onclick="selectPackage('standard', 8000)" class="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-600">
+                            Select Package
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Premium Buffet -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden border-2 border-white-500 relative">
+                    <div class="absolute top-0 right-0 bg-red-500 text-white px-3 py-1 text-sm">
+                        POPULAR
+                    </div>
+                    <div class="bg-yellow-500 text-white p-4 text-center">
+                        <h3 class="text-2xl font-bold">Premium Buffet</h3>
+                        <div class="text-3xl font-bold mt-2">₦12,000</div>
+                        <div class="text-sm opacity-90">per person</div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>All standard items</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Grilled seafood & fish</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Premium meat selection</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Fresh juices & mocktails</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Private dining area</span>
+                            </li>
+                        </ul>
+                        <button onclick="selectPackage('premium', 12000)" class="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-red-600">
+                            Select Package
+                        </button>
+                    </div>
+                </div>
+
+                <!-- VIP Buffet -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="bg-gray-900 text-white p-4 text-center">
+                        <h3 class="text-2xl font-bold">VIP Experience</h3>
+                        <div class="text-3xl font-bold mt-2">₦18,000</div>
+                        <div class="text-sm opacity-90">per person</div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-2 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>All premium items</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Live cooking stations</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Unlimited alcoholic drinks</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Dedicated waiter service</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <span class="text-green-500">✓</span>
+                                <span>Complimentary cake (birthdays)</span>
+                            </li>
+                        </ul>
+                        <button onclick="selectPackage('vip', 18000)" class="w-full bg-gray-900 text-white py-2 rounded-lg hover:bg-gray-700">
+                            Select Package
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Form Modal -->
+    <div id="reservation-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Buffet Reservation</h3>
+                <button onclick="closeReservationModal()" class="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
+            </div>
+
+            <form id="reservation-form" class="space-y-4">
+                <!-- Package Info -->
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold" id="selected-package"></h4>
+                    <p class="text-sm text-gray-600" id="package-details"></p>
+                </div>
+
+                <!-- Customer Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                        <input type="text" id="res-firstName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                        <input type="text" id="res-lastName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                        <input type="tel" id="res-phone" required placeholder="+234 903 456 7890" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                        <input type="email" id="res-email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                </div>
+
+                <!-- Reservation Details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Date *</label>
+                        <input type="date" id="res-date" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Time *</label>
+                        <select id="res-time" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                            <option value="">Select time</option>
+                            <option value="12:00">12:00 PM - Lunch</option>
+                            <option value="13:00">1:00 PM - Lunch</option>
+                            <option value="14:00">2:00 PM - Lunch</option>
+                            <option value="18:00">6:00 PM - Dinner</option>
+                            <option value="19:00">7:00 PM - Dinner</option>
+                            <option value="20:00">8:00 PM - Dinner</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Number of Guests *</label>
+                        <input type="number" id="res-guests" required min="1" max="50" value="2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Occasion</label>
+                        <select id="res-occasion" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                            <option value="">Select occasion (optional)</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="anniversary">Anniversary</option>
+                            <option value="business">Business Meeting</option>
+                            <option value="family">Family Gathering</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Special Requests -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
+                    <textarea id="res-requests" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" placeholder="Dietary restrictions, seating preferences, decorations, etc."></textarea>
+                </div>
+
+                <!-- Payment Summary -->
+                <div class="border-t pt-4">
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span>Package Price:</span>
+                            <span id="package-price">₦0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Number of Guests:</span>
+                            <span id="guest-count">2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Service Charge (5%):</span>
+                            <span id="service-charge">₦0</span>
+                        </div>
+                        <div class="flex justify-between items-center font-bold text-lg border-t pt-2">
+                            <span>Total Amount:</span>
+                            <span id="reservation-total" class="text-red-600">₦0</span>
+                        </div>
+                    </div>
+
+                    <div class="text-sm text-gray-600 mb-4">
+                        <p>💰 <strong>Payment:</strong> 50% deposit required to confirm reservation</p>
+                        <p>🔄 <strong>Cancellation:</strong> Free cancellation up to 24 hours before</p>
+                        <p>⏰ <strong>Duration:</strong> 3 hours dining experience</p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                        Pay Deposit & Confirm Reservation
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 text-center">
+            <div class="text-6xl mb-4">🎉</div>
+            <h3 class="text-2xl font-bold mb-4">Reservation Confirmed!</h3>
+            <p class="text-gray-600 mb-6">Your buffet reservation has been confirmed. We'll send you a confirmation message shortly.</p>
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <p class="text-sm text-gray-700">Reservation ID: #<span id="reservation-id"></span></p>
+                <p class="text-sm text-gray-700 mt-1">Check your email and WhatsApp for details</p>
+            </div>
+            <button onclick="closeConfirmationModal()" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                Done
+            </button>
+        </div>
+    </div>
+
+    <!-- Buffet Menu Preview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">What's on the Buffet?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="text-4xl mb-3">🍖</div>
+                    <h3 class="font-semibold">Grilled Meats</h3>
+                    <p class="text-sm text-gray-600">Beef, chicken, fish, and more</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl mb-3">🍛</div>
+                    <h3 class="font-semibold">Nigerian Dishes</h3>
+                    <p class="text-sm text-gray-600">Jollof rice, fried rice, soups</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl mb-3">🥗</div>
+                    <h3 class="font-semibold">Fresh Salads</h3>
+                    <p class="text-sm text-gray-600">Garden fresh vegetables</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl mb-3">🍰</div>
+                    <h3 class="font-semibold">Desserts</h3>
+                    <p class="text-sm text-gray-600">Cakes, fruits, ice cream</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<footer class="bg-black text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+        <div class="text-2xl font-bold text-yellow-400 mb-2">Rubels & Angels</div>
+        <p class="text-gray-400 mb-4">Heavenly Food Delivered to Your Door</p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-6 mb-4">
+            <a href="mailto:orders@rubelsandangels.com" class="text-gray-400 hover:text-yellow-400 transition">
+                <i class="fas fa-envelope mr-2"></i>info@rubelsandangels.com.ng
+            </a>
+            <a href="tel:+2349034567890" class="text-gray-400 hover:text-yellow-400 transition">
+                <i class="fas fa-phone mr-2"></i>+234 703 572 7288
+            </a>
+            <a href="https://wa.me/2349011938616" target="_blank" class="text-gray-400 hover:text-yellow-400 transition">
+                <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+            </a>
+        </div>
+        <p class="text-sm text-gray-500">&copy; 2024 Rubels & Angels. All rights reserved.</p>
+    </div>
+</footer>
+
+    <!-- Load JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/buffet.js"></script>
+</body>
+</html>

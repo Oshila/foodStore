@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rubels & Angels - Order Online</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-black text-white">
+
+<!-- Navigation -->
+<nav class="bg-black/90 backdrop-blur-md fixed top-0 w-full z-50 shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between items-center py-4">
+            <div class="flex items-center space-x-3">
+                <img src="images/logo.jpg" alt="Rubels & Angels Logo" class="w-12 h-12 object-cover rounded-full">
+                <div>
+                    <div class="text-2xl font-bold text-yellow-400" id="logo">Rubels & Angels</div>
+                    <div class="text-xs text-white/70 hidden sm:block">Heavenly Food</div>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#menu" class="text-white/80 hover:text-yellow-400 font-medium transition">Menu</a>
+                <a href="buffet-reservation.html" class="text-white/80 hover:text-yellow-400 font-medium transition">Buffet</a>
+                <a href="track-order.html" class="text-white/80 hover:text-yellow-400 font-medium transition">Track Order</a>
+                <a href="#about" class="text-white/80 hover:text-yellow-400 font-medium transition">About</a>
+                <a href="#contact" class="text-white/80 hover:text-yellow-400 font-medium transition">Contact</a>
+                <a href="admin.html" class="text-white/80 hover:text-yellow-400 font-medium transition">Admin</a>
+                <button id="cart-btn" class="relative bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-300 flex items-center space-x-2 transition">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span id="cart-count" class="bg-yellow-600 text-xs px-2 py-1 rounded-full ml-2 hidden">0</span>
+                </button>
+            </div>
+            <div class="md:hidden flex items-center space-x-3">
+                <button id="cart-btn-mobile" class="relative bg-yellow-400 text-black p-2 rounded-lg hover:bg-yellow-300 transition">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count-mobile" class="absolute -top-2 -right-2 bg-yellow-600 text-xs px-1.5 py-0.5 rounded-full text-black hidden">0</span>
+                </button>
+                <button id="mobile-menu-btn" class="text-white/80 hover:text-yellow-400 focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="md:hidden hidden border-t border-white/20 py-4">
+            <div class="flex flex-col space-y-3">
+                <a href="#menu" class="text-white/80 hover:text-yellow-400 font-medium px-4 py-2 transition">Menu</a>
+                <a href="buffet-reservation.html" class="text-white/80 hover:text-yellow-400 font-medium px-4 py-2 transition">Buffet Reservation</a>
+                <a href="track-order.html" class="text-white/80 hover:text-yellow-400 font-medium px-4 py-2 transition">Track Order</a>
+                <a href="#about" class="text-white/80 hover:text-yellow-400 font-medium px-4 py-2 transition">About</a>
+                <a href="#contact" class="text-white/80 hover:text-yellow-400 font-medium px-4 py-2 transition">Contact</a>
+                <a href="admin.html" class="text-white/80 hover:text-yellow-400 font-medium px-4 py-2 transition">Admin Dashboard</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative h-screen bg-black text-white overflow-hidden flex items-center justify-center">
+    <!-- Glowing particles -->
+    <div class="absolute top-0 left-1/4 w-6 h-6 bg-yellow-400 rounded-full animate-pulse-slow opacity-60"></div>
+    <div class="absolute top-1/3 left-3/4 w-8 h-8 bg-yellow-500 rounded-full animate-pulse-slow opacity-50"></div>
+    <div class="absolute top-2/3 left-1/2 w-5 h-5 bg-yellow-400 rounded-full animate-pulse-slow opacity-40"></div>
+
+    <div class="relative flex flex-col items-center">
+        <!-- Realistic SVG wings -->
+        <svg class="absolute -left-40 top-10 w-80 h-40 wing-left z-0" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50 C70 10, 30 0, 0 50 C20 30, 50 20, 100 50 Z" fill="rgba(255,255,200,0.3)" />
+            <path d="M100 50 C60 15, 20 5, 0 50 C15 35, 50 25, 100 50 Z" fill="rgba(255,255,200,0.2)" />
+        </svg>
+        <svg class="absolute -right-40 top-10 w-80 h-40 wing-right z-0" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50 C130 10, 170 0, 200 50 C180 30, 150 20, 100 50 Z" fill="rgba(255,255,200,0.3)" />
+            <path d="M100 50 C140 15, 180 5, 200 50 C185 35, 150 25, 100 50 Z" fill="rgba(255,255,200,0.2)" />
+        </svg>
+
+        <!-- Logo -->
+        <div class="w-32 h-32 bg-yellow-400 rounded-full flex items-center justify-center text-black text-xl font-bold z-10 animate-logo-bounce">
+            R&A
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl md:text-6xl font-extrabold mt-6 text-yellow-400 animate-fade-up">Rubels & Angels</h1>
+        <p class="text-lg md:text-2xl mt-2 text-white/90 animate-fade-up delay-200">
+            Experience heavenly flavors delivered to your door
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-6 animate-fade-up delay-400">
+            <button onclick="scrollToMenu()" class="bg-yellow-400 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 hover:shadow-lg transition-all duration-500">
+                <i class="fas fa-utensils mr-2"></i>Order Now
+            </button>
+            <a href="buffet-reservation.html" class="border border-yellow-400 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 hover:text-black hover:shadow-lg transition-all duration-500">
+                <i class="fas fa-calendar-alt mr-2"></i>Book Buffet
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Fade Up Animation */
+@keyframes fadeUp {0%{opacity:0;transform:translateY(30px);}100%{opacity:1;transform:translateY(0);}}
+.animate-fade-up{animation:fadeUp 1s ease-out forwards;}
+.animate-fade-up.delay-200{animation-delay:0.2s;}
+.animate-fade-up.delay-400{animation-delay:0.4s;}
+
+/* Pulse animation */
+@keyframes pulseSlow{0%,100%{opacity:0.3;transform:scale(1);}50%{opacity:0.8;transform:scale(1.3);}}
+.animate-pulse-slow{animation:pulseSlow 4s ease-in-out infinite;}
+
+/* Logo bounce */
+@keyframes logoBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.animate-logo-bounce{animation:logoBounce 2s ease-in-out infinite;}
+
+/* Wing Flap Animation */
+.wing-left{transform-origin:right center;animation:wingFlapLeft 2s ease-in-out infinite;}
+.wing-right{transform-origin:left center;animation:wingFlapRight 2s ease-in-out infinite;}
+@keyframes wingFlapLeft{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-5deg);}}
+@keyframes wingFlapRight{0%,100%{transform:rotate(0deg);}50%{transform:rotate(5deg);}}
+</style>
+
+
+
+    <!-- Order Type Selection -->
+<section class="py-8 bg-black text-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-center space-x-4">
+            <button id="pickup-btn" class="flex items-center space-x-2 px-6 py-3 rounded-lg border-2 border-yellow-400 bg-yellow-400 text-black transition hover:bg-yellow-300">
+                <i class="fas fa-store"></i>
+                <span>Pickup</span>
+            </button>
+            <button id="delivery-btn" class="flex items-center space-x-2 px-6 py-3 rounded-lg border-2 border-white text-white hover:border-yellow-400 hover:text-yellow-400 transition">
+                <i class="fas fa-truck"></i>
+                <span>Delivery</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Menu</h2>
+            
+            <!-- Menu Categories -->
+<div class="flex flex-wrap justify-center mb-8 gap-2">
+    <button class="menu-category bg-yellow-400 text-black px-4 md:px-6 py-2 rounded-full text-sm md:text-base transition" data-category="all">All Items</button>
+    <button class="menu-category bg-gray-200 text-gray-800 px-4 md:px-6 py-2 rounded-full hover:bg-yellow-400 hover:text-black text-sm md:text-base transition" data-category="appetizers">Appetizers</button>
+    <button class="menu-category bg-gray-200 text-gray-800 px-4 md:px-6 py-2 rounded-full hover:bg-yellow-400 hover:text-black text-sm md:text-base transition" data-category="mains">Main Courses</button>
+    <button class="menu-category bg-gray-200 text-gray-800 px-4 md:px-6 py-2 rounded-full hover:bg-yellow-400 hover:text-black text-sm md:text-base transition" data-category="desserts">Desserts</button>
+    <button class="menu-category bg-gray-200 text-gray-800 px-4 md:px-6 py-2 rounded-full hover:bg-yellow-400 hover:text-black text-sm md:text-base transition" data-category="beverages">Beverages</button>
+</div>
+
+
+            <!-- Menu Items Grid -->
+            <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-black text-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-yellow-400">About Rubels & Angels</h2>
+                <p class="text-lg text-white/90 mb-6">
+                    Founded with a passion for creating heavenly dining experiences, Rubels & Angels combines 
+                    traditional flavors with modern culinary techniques. Our chefs craft each dish with love, 
+                    using only the freshest ingredients.
+                </p>
+                <div class="flex space-x-8">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-yellow-400">5+</div>
+                        <div class="text-white/80">Years Experience</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-yellow-400">1000+</div>
+                        <div class="text-white/80">Happy Customers</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-yellow-400">50+</div>
+                        <div class="text-white/80">Menu Items</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Restaurant image placeholder -->
+            <div class="relative">
+<div class="h-96 rounded-lg overflow-hidden relative">
+    <img src="images/restaurant.jpg" alt="Restaurant Photo" class="w-full h-full object-cover">
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+<section id="contact" class="py-16 bg-black text-white">
+    <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-yellow-400">Contact Us</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+                <div class="bg-yellow-400 text-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-map-marker-alt text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Location</h3>
+                <p class="text-white/90">123 Food Street<br>Lagos, Nigeria</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-yellow-400 text-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-phone text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Phone</h3>
+                <p class="text-white/90">+234 903 456 7890</p>
+            </div>
+            <div class="text-center">
+                <div class="bg-yellow-400 text-black w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-clock text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Hours</h3>
+                <p class="text-white/90">Mon-Sun: 11AM - 10PM</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cart Sidebar -->
+<div id="cart-sidebar" class="fixed right-0 top-0 h-full w-full sm:w-96 bg-black shadow-2xl transform translate-x-full transition-transform z-50">
+    <div class="p-6 border-b border-gray-700">
+        <div class="flex justify-between items-center">
+            <h3 class="text-2xl font-bold text-yellow-400">Your Order</h3>
+            <button id="close-cart" class="text-gray-400 hover:text-yellow-400 text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div id="cart-items" class="p-6 flex-1 overflow-y-auto" style="max-height: 60vh;">
+        <p class="text-gray-400 text-center">Your cart is empty</p>
+    </div>
+    <div class="p-6 border-t border-gray-700 bg-black">
+        <div class="flex justify-between items-center mb-4">
+            <span class="text-xl font-semibold text-white">Total:</span>
+            <span id="cart-total" class="text-2xl font-bold text-yellow-400">₦0.00</span>
+        </div>
+        <button id="checkout-btn" class="w-full bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-300 transition disabled:bg-gray-700" disabled>
+            <i class="fas fa-credit-card mr-2"></i>Proceed to Checkout
+        </button>
+    </div>
+</div>
+
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Checkout</h3>
+                <button id="close-checkout" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="checkout-form" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                        <input type="text" id="firstName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                        <input type="text" id="lastName" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number *</label>
+                    <input type="tel" id="phone" required placeholder="+234 903 456 7890" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <input type="email" id="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                </div>
+                <div id="delivery-address" class="hidden">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Delivery Address *</label>
+                    <input type="text" id="address" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" placeholder="Street, Area, Lagos">
+                    <p class="text-sm text-gray-500 mt-1">Delivery fee: ₦500</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Special Instructions</label>
+                    <textarea id="instructions" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500" rows="3" placeholder="Any special requests..."></textarea>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">₦0.00</span>
+                        </div>
+                        <div id="delivery-fee-row" class="flex justify-between hidden">
+                            <span>Delivery Fee:</span>
+                            <span>₦500.00</span>
+                        </div>
+                        <div class="flex justify-between items-center font-bold text-lg border-t pt-2">
+                            <span>Total:</span>
+                            <span id="checkout-total" class="text-red-600">₦0.00</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition">
+                        <i class="fab fa-paypal mr-2"></i>Pay with Paystack
+                    </button>
+                    <p class="text-xs text-gray-500 text-center mt-2">Secure payment powered by Paystack</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4 text-center">
+            <div class="text-6xl mb-4"><i class="fas fa-check-circle text-green-500"></i></div>
+            <h3 class="text-2xl font-bold mb-4">Order Confirmed!</h3>
+            <p class="text-gray-600 mb-6">Your order has been received and will be ready in <strong>20-30 minutes</strong>.</p>
+            <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                <p class="text-sm text-gray-700">Order details sent to your WhatsApp and email</p>
+                <p class="text-xs text-gray-500 mt-1">Order ID: #<span id="order-id"></span></p>
+                <a id="track-order-link" href="#" class="text-red-600 text-sm hover:underline mt-2 inline-block">
+                    <i class="fas fa-search mr-1"></i>Track Your Order
+                </a>
+            </div>
+            <button onclick="closeSuccessModal()" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+<footer class="bg-black text-white py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+        <div class="text-2xl font-bold text-yellow-400 mb-2">Rubels & Angels</div>
+        <p class="text-gray-400 mb-4">Heavenly Food Delivered to Your Door</p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-6 mb-4">
+            <a href="mailto:orders@rubelsandangels.com" class="text-gray-400 hover:text-yellow-400 transition">
+                <i class="fas fa-envelope mr-2"></i>info@rubelsandangels.com.ng
+            </a>
+            <a href="tel:+2349034567890" class="text-gray-400 hover:text-yellow-400 transition">
+                <i class="fas fa-phone mr-2"></i>+234 703 572 7288
+            </a>
+            <a href="https://wa.me/2349011938616" target="_blank" class="text-gray-400 hover:text-yellow-400 transition">
+                <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+            </a>
+        </div>
+        <p class="text-sm text-gray-500">&copy; 2024 Rubels & Angels. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    <!-- Load JavaScript -->
+    <script src="js/config.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
