@@ -67,14 +67,17 @@
 
     <div class="relative flex flex-col items-center">
         <!-- Realistic SVG wings -->
-        <svg class="absolute -left-40 top-10 w-80 h-40 wing-left z-0" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 50 C70 10, 30 0, 0 50 C20 30, 50 20, 100 50 Z" fill="rgba(255,255,200,0.3)" />
-            <path d="M100 50 C60 15, 20 5, 0 50 C15 35, 50 25, 100 50 Z" fill="rgba(255,255,200,0.2)" />
-        </svg>
-        <svg class="absolute -right-40 top-10 w-80 h-40 wing-right z-0" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 50 C130 10, 170 0, 200 50 C180 30, 150 20, 100 50 Z" fill="rgba(255,255,200,0.3)" />
-            <path d="M100 50 C140 15, 180 5, 200 50 C185 35, 150 25, 100 50 Z" fill="rgba(255,255,200,0.2)" />
-        </svg>
+        <!-- Left Wing -->
+<svg class="absolute left-4 md:-left-32 top-10 w-40 md:w-64 h-24 md:h-40 wing-left z-0" 
+     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="white">
+  <path d="M464 64C400 64 320 160 192 160c-48 0-96-16-144-48 16 144 112 256 240 256..." />
+</svg>
+
+<!-- Right Wing -->
+<svg class="absolute right-4 md:-right-32 top-10 w-40 md:w-64 h-24 md:h-40 wing-right z-0" 
+     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="white">
+  <path d="M48 64c64 0 144 96 272 96 48 0 96-16 144-48-16 144-112 256-240 256..." />
+</svg>
 
         <!-- Logo -->
         <div class="w-32 h-32 bg-yellow-400 rounded-full flex items-center justify-center text-black text-xl font-bold z-10 animate-logo-bounce">
