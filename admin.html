@@ -121,18 +121,24 @@
         </div>
     </div>
 
-    <!-- Menu Management Section -->
-    <div id="menu-management" class="hidden">
-        <div class="max-w-6xl mx-auto px-4 py-8">
-            <div class="bg-white rounded-lg shadow-lg p-6">
-                <h2 class="text-2xl font-bold mb-6">Menu Management</h2>
-                <div class="text-gray-600">
-                    <p>Menu management features coming soon...</p>
-                    <p class="mt-2">Current menu items are managed in the <code class="bg-gray-100 px-2 py-1 rounded">js/data.js</code> file.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+ <!-- MENU MANAGEMENT SECTION -->
+<section id="menu-management" class="hidden p-4">
+  <h2 class="text-2xl font-bold mb-4">Manage Menu</h2>
+
+  <div class="space-y-2 mb-4">
+    <input type="text" id="menu-name" placeholder="Menu name" class="border p-2 w-full rounded">
+    <input type="number" id="menu-price" placeholder="Price (₦)" class="border p-2 w-full rounded">
+    <textarea id="menu-desc" placeholder="Description" class="border p-2 w-full rounded"></textarea>
+    <input type="file" id="menu-image-file" accept="image/*" class="border p-2 w-full rounded">
+    <button id="add-menu-btn" class="bg-red-600 text-white px-4 py-2 rounded">Save Menu Item</button>
+  </div>
+
+  <div id="menu-list" class="grid gap-4">
+    <!-- Menu items will appear here -->
+  </div>
+</section>
+
+
 
     <!-- Settings Section -->
     <div id="settings-section" class="hidden">

@@ -1,4 +1,4 @@
-// Main Restaurant Website JavaScript
+// Main Restaurant Website JavaScript (Dynamic with Admin Sync)
 
 let cart = [];
 let orderType = 'pickup';
@@ -10,6 +10,7 @@ function init() {
     renderMenuItems('all');
     setupEventListeners();
     updateCartDisplay();
+    autoRefreshMenu(); // ✅ keep homepage synced with admin
 }
 
 function initializeElements() {
@@ -92,13 +93,29 @@ function setOrderType(type) {
     updateCheckoutTotal();
 }
 
-// ✅ Render menu
+// ✅ Render menu dynamically from admin storage
 function renderMenuItems(category) {
     const menuContainer = document.getElementById('menu-items');
     if (!menuContainer) return;
 
-    const filteredItems = MenuHelpers.getItemsByCategory(category);
-    menuContainer.innerHTML = filteredItems.map(item => `
+    const storedMenu = JSON.parse(localStorage.getItem('restaurantMenu') || '[]');
+    let items = storedMenu;
+
+    if (category && category !== 'all') {
+        items = items.filter(item => item.category.toLowerCase() === category.toLowerCase());
+    }
+
+    if (items.length === 0) {
+        menuContainer.innerHTML = `
+            <div class="text-center text-gray-500 py-8">
+                <i class="fas fa-utensils text-4xl mb-3"></i>
+                <p>No menu items available yet.</p>
+            </div>
+        `;
+        return;
+    }
+
+    menuContainer.innerHTML = items.map(item => `
         <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow ${!item.available ? 'opacity-75' : ''}">
             <div class="relative h-48 overflow-hidden">
                 <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
@@ -109,7 +126,7 @@ function renderMenuItems(category) {
                 <h3 class="text-xl font-semibold mb-2 text-yellow-400">${item.name}</h3>
                 <p class="text-gray-600 mb-4 text-sm">${item.description}</p>
                 <div class="flex justify-between items-center">
-                    <span class="text-2xl font-bold text-red-600">${MenuHelpers.formatPrice(item.price)}</span>
+                    <span class="text-2xl font-bold text-red-600">₦${Number(item.price).toLocaleString()}</span>
                     <button onclick="addToCart(${item.id})" 
                         class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition flex items-center space-x-2 ${!item.available ? 'opacity-50 cursor-not-allowed' : ''}" 
                         ${!item.available ? 'disabled' : ''}>
@@ -122,9 +139,22 @@ function renderMenuItems(category) {
     `).join('');
 }
 
+// ✅ Auto refresh menu if admin updates it
+function autoRefreshMenu() {
+    let lastData = localStorage.getItem('restaurantMenu');
+    setInterval(() => {
+        const newData = localStorage.getItem('restaurantMenu');
+        if (newData !== lastData) {
+            lastData = newData;
+            renderMenuItems('all');
+        }
+    }, 3000);
+}
+
 // ✅ Add to Cart
 function addToCart(itemId) {
-    const item = MenuHelpers.getItemById(itemId);
+    const menu = JSON.parse(localStorage.getItem('restaurantMenu') || '[]');
+    const item = menu.find(i => i.id === itemId);
     if (!item || !item.available) return;
 
     const existing = cart.find(ci => ci.id === itemId);
@@ -180,8 +210,6 @@ function updateCartDisplay() {
 
     const total = cart.reduce((sum, ci) => sum + (ci.price * ci.quantity), 0);
     elements.cartTotal.textContent = `₦${total.toLocaleString()}`;
-
-    // update badge counts
     updateCartCount();
 }
 
@@ -194,7 +222,6 @@ function changeQuantity(itemId, delta) {
     updateCartDisplay();
 }
 
-// ✅ Remove item completely
 function removeFromCart(itemId) {
     cart = cart.filter(ci => ci.id !== itemId);
     updateCartDisplay();
@@ -298,19 +325,4 @@ function storeOrder(orderDetails, paymentReference) {
     localStorage.setItem('restaurantOrders', JSON.stringify(orders));
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    init();
-    if (!isRestaurantOpen()) {
-        const notice = document.createElement('div');
-        notice.className = 'bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 text-center fixed top-20 left-0 right-0 z-40';
-        notice.innerHTML = `<i class="fas fa-clock mr-2"></i>We're currently closed. We open daily ${CONFIG.OPERATING_HOURS.open} – ${CONFIG.OPERATING_HOURS.close}`;
-        document.body.insertBefore(notice, document.body.firstChild);
-    }
-});
-
-// Fallback initialization if DOM is already loaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    init();
-}
+document.addEventListener('DOMContentLoaded', init);
